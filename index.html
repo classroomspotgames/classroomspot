@@ -36,20 +36,37 @@ const HTML = "https://cdn.jsdelivr.net/gh/gn-math/html@main";
 
 let games = [];
 
+/* ADD ROBLOX */
+function addRoblox(){
+  const card = document.createElement("div");
+  card.className = "game-card";
+  card.style.backgroundImage = "url(roblox.png)";
+
+  const label = document.createElement("div");
+  label.className = "game-name";
+  label.textContent = "Roblox";
+
+  card.appendChild(label);
+  card.onclick = () => window.open("https://nowgg.fun");
+
+  gamesEl.appendChild(card);
+}
+
 fetch(ZONES + "?t=" + Date.now())
 .then(r=>r.json())
 .then(data => {
-  // remove suggestion / comment entries
   games = data.filter(g =>
     !g.name.toLowerCase().includes("suggest") &&
     !g.name.toLowerCase().includes("comment")
   );
-  totalEl.textContent = "Total games: " + games.length;
+  totalEl.textContent = "Total games: " + (games.length + 1);
   render(games);
 });
 
 function render(list){
   gamesEl.innerHTML = "";
+  addRoblox(); // Roblox only
+
   list.forEach(g => {
     const card = document.createElement("div");
     card.className = "game-card";
