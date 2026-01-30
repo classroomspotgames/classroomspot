@@ -36,11 +36,15 @@ const HTML = "https://cdn.jsdelivr.net/gh/gn-math/html@main";
 
 let games = [];
 
+/* ROBLOX IMAGE (EMBEDDED) */
+const ROBLOX_IMAGE =
+"data:image/png;base64,REPLACE_THIS_TEXT";
+
 /* ADD ROBLOX */
 function addRoblox(){
   const card = document.createElement("div");
   card.className = "game-card";
-  card.style.backgroundImage = "url(roblox.png)";
+  card.style.backgroundImage = `url(${ROBLOX_IMAGE})`;
 
   const label = document.createElement("div");
   label.className = "game-name";
@@ -65,7 +69,7 @@ fetch(ZONES + "?t=" + Date.now())
 
 function render(list){
   gamesEl.innerHTML = "";
-  addRoblox(); // Roblox only
+  addRoblox();
 
   list.forEach(g => {
     const card = document.createElement("div");
