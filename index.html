@@ -1,87 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClassroomSpot</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* ===== GAME GRID ===== */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
 
-<nav class="nav">
-  <span class="logo">ClassroomSpot</span>
-  <a href="index.html">Games</a>
-  <a href="movies.html" class="movies-btn">
-    <span class="movies-label">MOVIES</span>
-  </a>
-  <a href="partners.html">Partners</a>
-  <a href="unblockers.html">Unblockers</a>
-</nav>
+/* ===== GAME CARD ===== */
+.game-card {
+  position: relative;
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-<div class="topbar">
-  <span id="total">Total games: loading…</span>
-  <input id="search" placeholder="Search games…">
-</div>
-
-<div id="games" class="games-grid"></div>
-
-<script>
-const gamesEl = document.getElementById("games");
-const search = document.getElementById("search");
-const totalEl = document.getElementById("total");
-
-const ZONES = "https://cdn.jsdelivr.net/gh/gn-math/assets@main/zones.json";
-const COVER = "https://cdn.jsdelivr.net/gh/gn-math/covers@main";
-const HTML = "https://cdn.jsdelivr.net/gh/gn-math/html@main";
-
-let games = [];
-
-fetch(ZONES + "?t=" + Date.now())
-.then(r=>r.json())
-.then(data => {
-  // remove suggestion / comment entries
-  games = data.filter(g =>
-    !g.name.toLowerCase().includes("suggest") &&
-    !g.name.toLowerCase().includes("comment")
+/* dark overlay */
+.game-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.15)
   );
-  totalEl.textContent = "Total games: " + games.length;
-  render(games);
-});
-
-function render(list){
-  gamesEl.innerHTML = "";
-  list.forEach(g => {
-    const card = document.createElement("div");
-    card.className = "game-card";
-    card.style.backgroundImage =
-      "url(" + g.cover.replace("{COVER_URL}", COVER).replace("{HTML_URL}", HTML) + ")";
-
-    const label = document.createElement("div");
-    label.className = "game-name";
-    label.textContent = g.name;
-
-    card.appendChild(label);
-    card.onclick = () => openGame(g);
-    gamesEl.appendChild(card);
-  });
+  transition: opacity 0.25s ease;
 }
 
-search.oninput = () => {
-  const q = search.value.toLowerCase();
-  render(games.filter(g => g.name.toLowerCase().includes(q)));
-};
-
-function openGame(g){
-  const win = window.open("about:blank");
-  fetch(g.url.replace("{HTML_URL}", HTML))
-  .then(r=>r.text())
-  .then(t => {
-    win.document.open();
-    win.document.write(t);
-    win.document.close();
-  });
+/* hover effects */
+.game-card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
-</script>
 
-</body>
-</html>
+.game-card:hover::before {
+  opacity: 0.6;
+}
+
+/* ===== GAME NAME ===== */
+.game-name {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ===== NAV BAR EFFECTS ===== */
+.nav a {
+  color: #ddd;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav a:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* ===== SEARCH BAR ===== */
+#search {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+}
+
+#search::placeholder {
+  color: #888;
+}
