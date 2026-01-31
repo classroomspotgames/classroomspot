@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Launch Classroom Movies</title>
+<title>Launch App</title>
 
 <style>
 html, body {
@@ -18,8 +18,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   font-family: Arial, sans-serif;
   font-size: 28px;
   font-weight: bold;
@@ -37,145 +37,14 @@ html, body {
 
 <body>
 
-<div class="launch-btn" onclick="launchApp()">Launch App</div>
-
-<script>
-function launchApp() {
-  const html = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Classroom Movies</title>
-
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#0b0b0b;color:white}
-header{text-align:center;padding:20px;background:#111}
-header h1{margin:0;font-size:2.5rem}
-header p{color:#aaa}
-main{padding:20px}
-h2{margin-top:40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
-.card{
-  background:#161616;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-  color:white;
-  text-decoration:none;
-  cursor:pointer;
-  transition:.2s;
-  font-size:16px;
-}
-.card:hover{transform:scale(1.05);background:#1f1f1f}
-
-.search-box{
-  width:100%;
-  max-width:500px;
-  margin:20px auto;
-  display:block;
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  font-size:16px;
-  outline:none;
-  background:#1a1a1a;
-  color:white;
-}
-.search-box::placeholder{color:#888}
-
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);align-items:center;justify-content:center;z-index:1000}
-.modal-content{background:#141414;padding:25px;border-radius:14px;width:300px;text-align:center}
-.modal-content button{width:100%;margin:8px 0;padding:12px;border-radius:10px;border:none;background:red;color:white;font-size:16px;cursor:pointer}
-.close{background:#333}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>Classroom Movies</h1>
-<p>Shows & Movies</p>
-<input type="text" id="searchInput" class="search-box" placeholder="Search shows, movies, anime..." onkeyup="searchCards()">
-</header>
-
-<main>
-
-<section>
-<h2>TV Shows</h2>
-<div class="grid">
-<a class="card">South Park</a>
-<a class="card">The Simpsons</a>
-<button class="card" onclick="openHazbin()">Hazbin Hotel</button>
-<a class="card">Family Guy</a>
-<a class="card">Stranger Things</a>
-<a class="card">IT: Welcome to Derry</a>
-<a class="card">The Boondocks</a>
-<a class="card">Amazing World of Gumball</a>
-<a class="card">SpongeBob SquarePants</a>
-<a class="card">Young Sheldon</a>
-<a class="card">Murder Drones</a>
-<a class="card">Everybody Hates Chris</a>
-<a class="card">Big City Greens</a>
-<a class="card">American Dad</a>
-<a class="card">Squid Game</a>
-</div>
-</section>
-
-<section>
-<h2>Movies</h2>
-<div class="grid">
-<a class="card">Diary of a Wimpy Kid</a>
-<a class="card">Dog Man</a>
-
-<a class="card" href="https://drive.google.com/file/d/1T5xeDfwFXqP0WJMExe3nwnwHgUozfXK2/view" target="_blank">
-IT Chapter 1
+<a
+  class="launch-btn"
+  href="https://sites.google.com/view/merged-document?pli=1&authuser=1"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Launch App
 </a>
-
-<a class="card" href="https://drive.google.com/file/d/1vLFTFzlvu9TJXbcL40gnag9Xart3pKQI/view" target="_blank">
-IT Chapter 2
-</a>
-</div>
-</section>
-
-</main>
-
-<div id="hazbinModal" class="modal">
-<div class="modal-content">
-<h3>Hazbin Hotel</h3>
-<button>Season 1</button>
-<button>Season 2</button>
-<button class="close" onclick="closeHazbin()">Close</button>
-</div>
-</div>
-
-<script>
-function openHazbin(){
-  document.getElementById("hazbinModal").style.display="flex"
-}
-function closeHazbin(){
-  document.getElementById("hazbinModal").style.display="none"
-}
-function searchCards(){
-  const input=document.getElementById("searchInput").value.toLowerCase();
-  const cards=document.querySelectorAll(".card");
-  cards.forEach(card=>{
-    card.style.display = card.textContent.toLowerCase().includes(input) ? "block" : "none";
-  });
-}
-</script>
-
-</body>
-</html>
-  `;
-
-  const win = window.open("about:blank", "_blank");
-  win.document.open();
-  win.document.write(html);
-  win.document.close();
-}
-</script>
 
 </body>
 </html>
