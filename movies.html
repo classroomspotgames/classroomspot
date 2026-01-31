@@ -13,10 +13,19 @@ header p{color:#aaa}
 main{padding:20px}
 h2{margin-top:40px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
-.card{background:#161616;padding:15px;border-radius:12px;text-align:center;color:white;text-decoration:none;cursor:pointer;transition:.2s;font-size:16px}
+.card{
+  background:#161616;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.2s;
+  font-size:16px;
+}
 .card:hover{transform:scale(1.05);background:#1f1f1f}
 
-/* Search bar */
 .search-box{
   width:100%;
   max-width:500px;
@@ -49,11 +58,9 @@ h2{margin-top:40px}
 
 <main>
 
-<!-- TV SHOWS -->
 <section>
 <h2>TV Shows</h2>
 <div class="grid">
-
 <a class="card">South Park</a>
 <a class="card">The Simpsons</a>
 <button class="card" onclick="openHazbin()">Hazbin Hotel</button>
@@ -82,11 +89,9 @@ h2{margin-top:40px}
 <a class="card">Gravity Falls</a>
 <a class="card">Amazing Digital Circus</a>
 <a class="card">Smiling Friends</a>
-
 </div>
 </section>
 
-<!-- MOVIES -->
 <section>
 <h2>Movies</h2>
 <div class="grid">
@@ -94,12 +99,17 @@ h2{margin-top:40px}
 <a class="card">Dog Man</a>
 <a class="card">Five Nights at Freddy's</a>
 <a class="card">Five Nights at Freddy's 2</a>
-<a class="card">IT Chapter 1</a>
-<a class="card">IT Chapter 2</a>
+
+<a class="card" href="https://drive.google.com/file/d/1T5xeDfwFXqP0WJMExe3nwnwHgUozfXK2/view?usp=sharing" target="_blank">
+IT Chapter 1
+</a>
+
+<a class="card" href="https://drive.google.com/file/d/1vLFTFzlvu9TJXbcL40gnag9Xart3pKQI/view?usp=sharing" target="_blank">
+IT Chapter 2
+</a>
 </div>
 </section>
 
-<!-- ANIME -->
 <section>
 <h2>Anime</h2>
 <div class="grid">
@@ -113,7 +123,6 @@ h2{margin-top:40px}
 
 </main>
 
-<!-- HAZBIN MODAL -->
 <div id="hazbinModal" class="modal">
 <div class="modal-content">
 <h3>Hazbin Hotel</h3>
@@ -131,11 +140,9 @@ function closeHazbin(){
   document.getElementById("hazbinModal").style.display="none"
 }
 
-/* SEARCH FUNCTION */
 function searchCards(){
   const input=document.getElementById("searchInput").value.toLowerCase();
   const cards=document.querySelectorAll(".card");
-
   cards.forEach(card=>{
     const text=card.textContent.toLowerCase();
     card.style.display=text.includes(input)?"block":"none";
