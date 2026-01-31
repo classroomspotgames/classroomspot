@@ -3,6 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Classroom Movies</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.launch-btn {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.launch-btn:hover {
+  background: #4a148c;
+  transform: scale(1.02);
+}
+</style>
+</head>
+
+<body>
+
+<div class="launch-btn" onclick="launchApp()">Launch App</div>
+
+<script>
+function launchApp() {
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Classroom Movies</title>
 
 <style>
@@ -74,21 +118,8 @@ h2{margin-top:40px}
 <a class="card">Murder Drones</a>
 <a class="card">Everybody Hates Chris</a>
 <a class="card">Big City Greens</a>
-<a class="card">Legends of Chamberlain Heights</a>
 <a class="card">American Dad</a>
-<a class="card">Squid Game (S1 & S2)</a>
-<a class="card">Beast Games</a>
-<a class="card">Cobra Kai</a>
-<a class="card">iCarly</a>
-<a class="card">Phineas and Ferb</a>
-<a class="card">Spider-Man</a>
-<a class="card">Powerpuff Girls</a>
-<a class="card">Tom and Jerry</a>
-<a class="card">The Cuphead Show</a>
-<a class="card">Bluey</a>
-<a class="card">Gravity Falls</a>
-<a class="card">Amazing Digital Circus</a>
-<a class="card">Smiling Friends</a>
+<a class="card">Squid Game</a>
 </div>
 </section>
 
@@ -97,27 +128,14 @@ h2{margin-top:40px}
 <div class="grid">
 <a class="card">Diary of a Wimpy Kid</a>
 <a class="card">Dog Man</a>
-<a class="card">Five Nights at Freddy's</a>
-<a class="card">Five Nights at Freddy's 2</a>
 
-<a class="card" href="https://drive.google.com/file/d/1T5xeDfwFXqP0WJMExe3nwnwHgUozfXK2/view?usp=sharing" target="_blank">
+<a class="card" href="https://drive.google.com/file/d/1T5xeDfwFXqP0WJMExe3nwnwHgUozfXK2/view" target="_blank">
 IT Chapter 1
 </a>
 
-<a class="card" href="https://drive.google.com/file/d/1vLFTFzlvu9TJXbcL40gnag9Xart3pKQI/view?usp=sharing" target="_blank">
+<a class="card" href="https://drive.google.com/file/d/1vLFTFzlvu9TJXbcL40gnag9Xart3pKQI/view" target="_blank">
 IT Chapter 2
 </a>
-</div>
-</section>
-
-<section>
-<h2>Anime</h2>
-<div class="grid">
-<a class="card">Naruto</a>
-<a class="card">Naruto Shippuden</a>
-<a class="card">My Hero Academia</a>
-<a class="card">JJK Season 3</a>
-<a class="card">Pokémon</a>
 </div>
 </section>
 
@@ -139,14 +157,23 @@ function openHazbin(){
 function closeHazbin(){
   document.getElementById("hazbinModal").style.display="none"
 }
-
 function searchCards(){
   const input=document.getElementById("searchInput").value.toLowerCase();
   const cards=document.querySelectorAll(".card");
   cards.forEach(card=>{
-    const text=card.textContent.toLowerCase();
-    card.style.display=text.includes(input)?"block":"none";
+    card.style.display = card.textContent.toLowerCase().includes(input) ? "block" : "none";
   });
+}
+</script>
+
+</body>
+</html>
+  `;
+
+  const win = window.open("about:blank", "_blank");
+  win.document.open();
+  win.document.write(html);
+  win.document.close();
 }
 </script>
 
